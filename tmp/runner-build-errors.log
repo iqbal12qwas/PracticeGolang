@@ -1,0 +1,7 @@
+# practice/entity
+entity\user.go:11:6: Authentication redeclared in this block
+	D:\Practice\Golang\TestAPITokodistributor\entity\auth.go:3:6: previous declaration
+entity\user.go:16:6: Token redeclared in this block
+	D:\Practice\Golang\TestAPITokodistributor\entity\auth.go:8:6: previous declaration
+entity\user.go:34:6: Tb_account redeclared in this block
+	D:\Practice\Golang\TestAPITokodistributor\entity\auth.go:13:6: previous declaration
