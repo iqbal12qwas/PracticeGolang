@@ -159,8 +159,6 @@ func UpdateFileByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// return that we have successfully uploaded our file!
-
 	upForm, err := db.Connector.CommonDB().Prepare("UPDATE files SET name = ?, path = ? WHERE id = ?;")
 	if err != nil {
 		panic(err.Error())
