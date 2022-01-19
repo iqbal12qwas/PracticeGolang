@@ -26,7 +26,7 @@ func FullFill(ball int) int {
 var wadah1 = 0
 var wadah2 = 0
 var wadah3 = 0
-var status1 = "Not Readyyyy"
+var status1 = "Not Ready"
 var status2 = "Not Ready"
 var status3 = "Not Ready"
 
@@ -53,7 +53,7 @@ func ChooseContainer(w http.ResponseWriter, r *http.Request) {
 	// Filling Container 1
 	if pick == 1 {
 		wadah1 = FullFill(1)
-		status1 = "ready"
+		status1 = "Ready"
 		var t_wadah1 *int = &wadah1
 		var t_status1 *string = &status1
 		for _, bowling := range lists {
@@ -65,7 +65,7 @@ func ChooseContainer(w http.ResponseWriter, r *http.Request) {
 		// Filling Container 2
 	} else if pick == 2 {
 		wadah2 = FullFill(1)
-		status2 = "ready"
+		status2 = "Ready"
 		var t_wadah2 *int = &wadah2
 		var t_status2 *string = &status2
 		for _, bowling := range lists {
@@ -77,7 +77,7 @@ func ChooseContainer(w http.ResponseWriter, r *http.Request) {
 		// Filling Container 3
 	} else {
 		wadah3 = FullFill(1)
-		status3 = "ready"
+		status3 = "Ready"
 		var t_wadah3 *int = &wadah3
 		var t_status3 *string = &status3
 		for _, bowling := range lists {

@@ -68,8 +68,17 @@ func UploadImage(w http.ResponseWriter, r *http.Request) {
 		log.Println("data insert successfully . . .")
 	}
 
-	insForm.Exec(name_file, "file\\"+name_file)
+	res_query, err := insForm.Exec(name_file, "file\\"+name_file)
+	if err != nil {
+		log.Println(err)
+	}
 
+	last_id, err := res_query.LastInsertId()
+	if err != nil {
+		log.Println(err)
+	}
+
+	efile.Id = last_id
 	efile.Name = name_file
 	efile.Path = "file\\" + name_file
 	w.Header().Set("Content-Type", "application/json")
