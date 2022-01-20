@@ -11,12 +11,16 @@ import (
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gorilla/securecookie"
+	"github.com/gorilla/sessions"
 	"golang.org/x/crypto/bcrypt"
 )
 
 var (
 	secretkey string = "secretkeyjwt"
 )
+
+var store = sessions.NewCookieStore(securecookie.GenerateRandomKey(32))
 
 func SetError(err entity.Error, message string) entity.Error {
 	err.IsError = true
@@ -37,6 +41,7 @@ func CheckPasswordHash(password, hash string) bool {
 }
 
 func SignIn(w http.ResponseWriter, r *http.Request) {
+	// Connection
 	connection := db.Connector
 
 	var user entity.Authentication
@@ -81,6 +86,16 @@ func SignIn(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(err)
 		return
 	}
+
+	// Session Start
+	sessions.NewSession(store, "session-name")
+	// gob.Register(&entity.Tb_account{})
+	session, _ := store.Get(r, "session-name")
+	session.Values["id"] = authUser.Id
+	session.Values["name"] = authUser.Name
+	session.Values["email"] = authUser.Email
+	session.Values["username"] = authUser.Username
+	session.Save(r, w)
 
 	var token entity.Token
 	token.Email = authUser.Email

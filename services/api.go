@@ -46,4 +46,6 @@ func InitializeRoute() {
 	people_route()
 
 	user_route()
+
+	session_route()
 }

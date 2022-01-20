@@ -11,7 +11,7 @@ type Token struct {
 }
 
 type Tb_account struct {
-	ID       uint   `json:"id" gorm:"primarykey"`
+	Id       uint   `json:"id" gorm:"primarykey"`
 	Name     string `json:"name"`
 	Email    string `gorm:"unique" json:"email"`
 	Username string `gorm:"unique" json:"username"`
