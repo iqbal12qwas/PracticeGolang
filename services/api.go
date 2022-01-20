@@ -32,6 +32,11 @@ func ServerStart() {
 
 //initialize all routes
 func InitializeRoute() {
+
+	// View
+	view_route()
+
+	// API
 	auth_route()
 
 	bowling_route()
