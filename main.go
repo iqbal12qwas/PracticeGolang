@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	db.DBinit()
+	db.Connect()
 	// db.MigratePeople(&entity.People{})
 	// db.MigrateFile(&entity.File{})
 	services.CreateRouter()

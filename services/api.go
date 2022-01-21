@@ -48,4 +48,6 @@ func InitializeRoute() {
 	user_route()
 
 	session_route()
+
+	book_route()
 }

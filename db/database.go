@@ -7,28 +7,11 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-//Connector variable used for CRUD operation's
 var Connector *gorm.DB
+var Connector2 *gorm.DB
 
-//Connect creates MySQL connection
-func Connect(connectionString string) error {
-	var err error
-	Connector, err = gorm.Open("mysql", connectionString)
-	if err != nil {
-		return err
-	}
-	log.Println("Connection was successful!!")
-	return nil
-}
-
-func CloseDatabase(connection *gorm.DB) {
-	sqldb := connection.DB()
-	sqldb.Close()
-}
-
-// Init DB
-func DBinit() {
-	config :=
+func Connect() error {
+	config1 :=
 		Config{
 			ServerName: "localhost:3306",
 			User:       "root",
@@ -36,9 +19,28 @@ func DBinit() {
 			DB:         "user_db",
 		}
 
-	connectionString := GetConnectionString(config)
-	err := Connect(connectionString)
+	config2 :=
+		Config{
+			ServerName: "localhost:3306",
+			User:       "root",
+			Password:   "",
+			DB:         "practice_java",
+		}
+
+	connectionString1 := GetConnectionString(config1)
+	connectionString2 := GetConnectionString(config2)
+
+	var err error
+	Connector, err = gorm.Open("mysql", connectionString1)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
+
+	Connector2, err = gorm.Open("mysql", connectionString2)
+	if err != nil {
+		log.Println(err)
+	}
+
+	log.Println("Connection was successful!!")
+	return nil
 }

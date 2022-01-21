@@ -14,3 +14,8 @@ func MigrateFile(table *entity.File) {
 	Connector.AutoMigrate(&table)
 	log.Println("Table File migrated")
 }
+
+func MigrateBook(table *entity.Book) {
+	Connector2.AutoMigrate(&table)
+	log.Println("Table Book migrated")
+}
